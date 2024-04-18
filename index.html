@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="apex.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"
+      integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title>Apex Legends Randomiser</title>
+  </head>
+  <body>
+    <!-- <div class="bg-img"></div> -->
+    <div class="container">
+      <table class="table-responsive" id="row1">
+        <tr>
+          <td>
+            <img src="img/bangalore.png" class="color" />
+          </td>
+          <td>
+            <img src="img/fuse.png" class="color" />
+          </td>
+          <td>
+            <img src="img/ash.png" class="color" />
+          </td>
+          <td>
+            <img src="img/maggie.png" class="color" />
+          </td>
+          <td>
+            <img src="img/ballistic.png" class="color" />
+          </td>
+          <td>
+            <img src="img/pathy.png" class="color" />
+          </td>
+          <td>
+            <img src="img/wraith.png" class="color" />
+          </td>
+        </tr>
+      </table>
+
+      <table class="table-responsive" id="row2">
+        <tr>
+          <td>
+            <img src="img/octane.png" class="color" />
+          </td>
+          <td>
+            <img src="img/rev.png" class="color" />
+          </td>
+          <td>
+            <img src="img/hz.png" class="color" />
+          </td>
+          <td>
+            <img src="img/valk.png" class="color" />
+          </td>
+          <td>
+            <img src="img/bloodhound.png" class="color" />
+          </td>
+          <td>
+            <img src="img/crypto.png" class="color" />
+          </td>
+          <td>
+            <img src="img/seer.png" class="color" />
+          </td>
+        </tr>
+      </table>
+
+      <table class="table-responsive" id="row3">
+        <tr>
+          <td>
+            <img src="img/vantage.png" class="color" />
+          </td>
+          <td>
+            <img src="img/gibby.png" class="color" />
+          </td>
+          <td>
+            <img src="img/lifeline.png" class="color" />
+          </td>
+          <td>
+            <img src="img/mirage.png" class="color" />
+          </td>
+          <td>
+            <img src="img/loba.png" class="color" />
+          </td>
+          <td>
+            <img src="img/nc.png" class="color" />
+          </td>
+          <td>
+            <img src="img/conduit.png" class="color" />
+          </td>
+        </tr>
+      </table>
+
+      <table class="table-responsive" id="row4">
+        <tr>
+          <td></td>
+          <td>
+            <img src="img/caustic.png" class="color" />
+          </td>
+          <td>
+            <img src="img/wattson.png" class="color" />
+          </td>
+          <td>
+            <img src="img/rampart.png" class="color" />
+          </td>
+          <td>
+            <img src="img/cat.png" class="color" />
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <!-- <table class="table-responsive" id="row5">
+        <tr>
+          <td>
+            <img src="img/nc.png" class="color" />
+          </td>
+          <td>
+            <img src="img/conduit.png" class="color" />
+          </td>
+          <td>
+            <img src="img/caustic.png" class="color" />
+          </td>
+          <td>
+            <img src="img/wattson.png" class="color" />
+          </td>
+          <td>
+            <img src="img/rampart.png" class="color" />
+          </td>
+          <td>
+            <img src="img/cat.png" class="color" />
+          </td>
+        </tr>
+      </table> -->
+    </div>
+    <br />
+
+    <div class="container" align="center">
+      <button type="button" id="picker"><strong>Pick My Legend</strong></button>
+    </div>
+    <div class="container chosen" align="center"></div>
+
+    <div class="container" align="center">
+      <button type="button" id="reset"><strong>Pick Again</strong></button>
+    </div>
+    <script>
+      $("#reset").hide();
+
+      $("img").click(function () {
+        if ($(this).hasClass("color"))
+          $(this).addClass("noColor").removeClass("color");
+        else if ($(this).hasClass("noColor"))
+          $(this).addClass("color").removeClass("noColor");
+      });
+
+      $("#picker").click(function () {
+        //Function to select remaining legends with color class and pick one at random then display in middle of screen as chosen legend
+        $("img").off("click");
+        var x = document.getElementsByClassName("color");
+        var legend = x[Math.floor(Math.random() * x.length)];
+        $("table").hide();
+        $("#picker").hide();
+        $("#reset").show();
+        console.log(legend);
+        var y = document.getElementsByClassName("chosen")[0];
+        //y.appendChild(legend);
+        $(legend).clone().appendTo(y);
+      });
+
+      $("#reset").click(function () {
+        //Function to reset back to main screen
+        $("img").click(function () {
+          if ($(this).hasClass("color"))
+            $(this).addClass("noColor").removeClass("color");
+          else if ($(this).hasClass("noColor"))
+            $(this).addClass("color").removeClass("noColor");
+        });
+        $("table").show();
+        $("#picker").show();
+        $("#reset").hide();
+        $(".chosen").empty();
+      });
+    </script>
+  </body>
+</html>
